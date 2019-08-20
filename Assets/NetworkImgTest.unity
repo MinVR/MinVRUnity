@@ -494,11 +494,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vrNodeType: 1
   serverIPAddress: 127.0.0.1
-  serverPort: 3490
-  windowXPos: 0
+  serverPort: 3480
+  windowXPos: 4240
   windowYPos: 0
   windowWidth: 1024
-  windowHeight: 768
+  windowHeight: 1440
   unityMouseBtnsToVREvents: 0
   unityMouseMovesToVREvents: 0
   unityKeysToVREvents: []
@@ -541,7 +541,7 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
+  m_projectionMatrixMode: 0
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
@@ -571,7 +571,7 @@ Camera:
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
-  m_StereoConvergence: 5
+  m_StereoConvergence: 6
   m_StereoSeparation: 0.022
 --- !u!4 &1034262036
 Transform:
@@ -736,11 +736,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vrNodeType: 1
   serverIPAddress: 127.0.0.1
-  serverPort: 3490
-  windowXPos: 0
+  serverPort: 3480
+  windowXPos: 2960
   windowYPos: 0
   windowWidth: 1024
-  windowHeight: 768
+  windowHeight: 1440
   unityMouseBtnsToVREvents: 0
   unityMouseMovesToVREvents: 0
   unityKeysToVREvents: []
@@ -930,11 +930,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vrNodeType: 1
   serverIPAddress: 127.0.0.1
-  serverPort: 3490
-  windowXPos: 0
+  serverPort: 3480
+  windowXPos: 1680
   windowYPos: 0
   windowWidth: 1024
-  windowHeight: 768
+  windowHeight: 1440
   unityMouseBtnsToVREvents: 0
   unityMouseMovesToVREvents: 0
   unityKeysToVREvents: []
@@ -1099,11 +1099,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vrNodeType: 1
   serverIPAddress: 127.0.0.1
-  serverPort: 3490
-  windowXPos: 0
+  serverPort: 3480
+  windowXPos: 5520
   windowYPos: 0
   windowWidth: 1024
-  windowHeight: 768
+  windowHeight: 1440
   unityMouseBtnsToVREvents: 0
   unityMouseMovesToVREvents: 0
   unityKeysToVREvents: []

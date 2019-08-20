@@ -23,7 +23,7 @@ public class VRNetClient {
 	public VRNetClient(string serverIP, int serverPort) {
 		try {
 			// currently only supports IPv4!!!
-			client = new TcpClient(AddressFamily.InterNetwork);
+			client = new TcpClient(new IPEndPoint(IPAddress.Any, serverPort));
 			client.Connect(IPAddress.Parse(serverIP), serverPort);
 			stream = client.GetStream();
 		} 
