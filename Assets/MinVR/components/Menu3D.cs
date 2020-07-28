@@ -39,8 +39,7 @@ public class Menu3D : MonoBehaviour
     private List<GameObject> labelBoxes = new List<GameObject>();
     private GameObject titleBoxObj;
     private GameObject bgBox;
-    private Vector3 lastTrackerPos;
-    private Quaternion lastTrackerRot;
+    private Matrix4x4 lastTrackerMat;
 
     // -1 = nothing, 0 = titlebar, 1..items.Count = menu items
     private int selected = -1;
@@ -189,20 +188,25 @@ public class Menu3D : MonoBehaviour
 
 
     void OnTrackerMove(Vector3 pos, Quaternion rot) {
-        Vector3 posMenuSpace = transform.InverseTransformPoint(pos);
+        // Convert the tracker's position and rotation to a Matrix4x4 format.
+        Matrix4x4 trackerMat = Matrix4x4.TRS(pos, rot, Vector3.one);
 
         if ((buttonPressed) && (selected == 0)) {
-            // In dragging state, move the menu
-            Vector3 deltaPos = pos - lastTrackerPos;
-            Quaternion deltaRot = rot * Quaternion.Inverse(lastTrackerRot);
-            float deltaAngle;
-            Vector3 deltaAxis;
-            deltaRot.ToAngleAxis(out deltaAngle, out deltaAxis);
+            // Dragging while holding onto the menu title bar, 
+            // move the menu based on motion of the tracker
 
-            transform.RotateAround(pos, deltaAxis, deltaAngle);
+            // Get the menu's Transform in Matrix4x4 format            
+            Matrix4x4 origMenuMat = transform.localToWorldMatrix;
 
-            //transform.rotation = deltaRot * transform.rotation;
-            transform.position = transform.position + deltaPos;
+            // Calc change in tracker pos and rot from the last frame until now
+            Matrix4x4 deltaTracker =  trackerMat * lastTrackerMat.inverse;
+
+            // Apply this change to the menu's current transformation to find its new transform
+            Matrix4x4 newMenuMat = deltaTracker * origMenuMat;
+
+            // Save the result, converting from Matrix4x4 back to unity's Transform class.
+            transform.position = Matrix4x4Extensions.GetTranslation(newMenuMat);
+            transform.rotation = Matrix4x4Extensions.GetRotation(newMenuMat);
         }
         else if (!buttonPressed) {
             // Clear selection and highlighting
@@ -227,8 +231,7 @@ public class Menu3D : MonoBehaviour
             }
         }
 
-        lastTrackerPos = pos;
-        lastTrackerRot = rot;
+        lastTrackerMat = trackerMat;
     }
 
     void OnButtonDown() {
